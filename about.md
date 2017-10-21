@@ -6,5 +6,4 @@
 4. Crate lists
 
 
-[link-to-google](https://www.google.com)
 [back-to-index](index.md)
