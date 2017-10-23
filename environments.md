@@ -202,3 +202,55 @@ environment(counter)$val
 
 9
 
+
+---
+#### Сблъсъци
+Както споменахме, средите образуват дърво. Може да проследим родителите на дадена среда по следния начин.
+
+```R
+g = globalenv()
+while(environmentName(g) != "R_EmptyEnv"){ g = parent.env(g); cat(str(g, give.attr=F))}
+```
+
+
+<environment: package:stats>
+
+
+<environment: package:graphics>
+
+
+<environment: package:grDevices>
+
+
+<environment: package:utils> 
+
+
+<environment: package:datasets> 
+
+
+<environment: package:methods> 
+
+
+<environment: 0x00000000153d4ac8> 
+
+
+<environment: base> 
+
+
+<environment: R_EmptyEnv>
+
+
+Алтернативно, може да използваме функцията `search`:
+
+```R
+search()
+```
+
+
+[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+
+
+[4] "package:grDevices" "package:utils"     "package:datasets" 
+
+
+[7] "package:methods"   "Autoloads"         "package:base"
