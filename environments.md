@@ -240,6 +240,7 @@ while(environmentName(g) != "R_EmptyEnv"){ g = parent.env(g); cat(str(g, give.at
 <environment: R_EmptyEnv>
 
 
+
 Алтернативно, може да използваме функцията `search`:
 
 ```R
@@ -254,3 +255,22 @@ search()
 
 
 [7] "package:methods"   "Autoloads"         "package:base"
+
+
+
+Чрез функцията **`attach`** имаме възможност да дoбавим среда, съдържаща обекти, в дървото от среди. Това прави обектите видими по име, но е възмжно да настъпят сблъсъци.
+
+
+```R
+a = 5
+objList = list(a=6, b=7)
+a
+b
+```
+
+
+```R
+attach(objList)
+a
+b
+```
