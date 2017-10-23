@@ -1,5 +1,5 @@
 
-## Среди, затваряния, именни пространства
+## Среди, затваряния, имени пространства
 ---
 #### Среди
 
@@ -213,31 +213,15 @@ while(environmentName(g) != "R_EmptyEnv"){ g = parent.env(g); cat(str(g, give.at
 ```
 
 
-<environment: package:stats>
-
-
-<environment: package:graphics>
-
-
-<environment: package:grDevices>
-
-
-<environment: package:utils> 
-
-
-<environment: package:datasets> 
-
-
-<environment: package:methods> 
-
-
-<environment: 0x00000000153d4ac8> 
-
-
-<environment: base> 
-
-
-<environment: R_EmptyEnv>
+	<environment: package:stats>
+	<environment: package:graphics>
+	<environment: package:grDevices>
+	<environment: package:utils> 
+	<environment: package:datasets> 
+	<environment: package:methods> 
+	<environment: 0x00000000153d4ac8> 
+	<environment: base> 
+	<environment: R_EmptyEnv>
 
 
 
@@ -248,13 +232,9 @@ search()
 ```
 
 
-[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
-
-
-[4] "package:grDevices" "package:utils"     "package:datasets" 
-
-
-[7] "package:methods"   "Autoloads"         "package:base"
+	[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+	[4] "package:grDevices" "package:utils"     "package:datasets" 
+	[7] "package:methods"   "Autoloads"         "package:base"
 
 
 
@@ -268,9 +248,76 @@ a
 b
 ```
 
+	[1] 5
+	Error: object 'b' not found
+
 
 ```R
 attach(objList)
+```
+
+	The following object is masked _by_ .GlobalEnv:
+	
+    	a
+
+```R
 a
 b
 ```
+
+5
+
+
+7
+
+
+```R
+search()
+```
+
+
+	 [1] ".GlobalEnv"        "objList"           "package:stats"     "package:graphics"  "package:grDevices" "package:utils"    
+	 [7] "package:datasets"  "package:methods"   "Autoloads"         "package:base"
+
+
+
+---
+#### Имени пространства
+
+Както знаем, с функцията `library` можем да заредим пакет и да добавим неговата среда във веригата от среди. Някои пакети освен това имат допълнителна среда, която играе ролята на имено пространство. Именото пространство ще бъде също и средата за функциите от съответния пакет.
+
+
+```R
+loadedNamespaces()
+```
+
+	[1] "compiler"  "graphics"  "utils"     "grDevices" "stats"     "datasets"  "methods"   "base"
+	
+
+Маскиране на функции:
+
+```R
+z = list(mean=function(x){ return("This function is now ruined!") })
+attach(z)
+```
+
+	The following object is masked from package:base:
+
+	    mean
+	    
+	  
+```R
+mean(5)
+```
+
+
+	[1] "This function is now ruined!"
+	
+
+```R
+base::mean(5)
+```
+
+
+5
+
