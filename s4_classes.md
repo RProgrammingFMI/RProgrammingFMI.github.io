@@ -139,3 +139,12 @@ lion
     [1] 10
 
 
+#### Generic фунцкии за S4 класове
+
+
+```R
+setGeneric("fur", function(object) standardGeneric("fur"))
+setMethod("fur", signature="Animal", function(object) "Maybe?")
+setMethod("fur", signature="Mammal", function(object) "Definitely!")
+```
+
